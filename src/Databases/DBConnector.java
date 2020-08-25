@@ -11,10 +11,16 @@ public class DBConnector
     private static String server = "jdbc:mysql://localhost";
     private static String database;
 
-    private static Connection connection;
-    public static void connect() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection(server,username,password);
+    protected static Connection connection;
+
+    static
+    {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(server,username,password);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static Connection getConnection()
