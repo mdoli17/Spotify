@@ -6,15 +6,15 @@ import java.util.ArrayList;
 public class ArtistDAO extends DBConnector implements  DBManager
 {
 
-    private String table = "";
+    private String table = "artists";
     @Override
     public void addRow(int ArtistId, String ArtistName, int AlbumId) throws SQLException
     {
 
         PreparedStatement addStatement = connection.prepareStatement("INSERT INTO "+ table + " VALUES (?, ?, ?)");
-        addStatement.setString(1, Integer.toString(ArtistId));
+        addStatement.setInt(1, ArtistId);
         addStatement.setString(2, ArtistName);
-        addStatement.setString(3, Integer.toString(AlbumId));
+        addStatement.setInt(3, AlbumId);
         addStatement.execute();
     }
 
